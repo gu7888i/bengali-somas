@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বাংলা ব্যাকরণ ও সমাস: ১০০ নম্বরের অনলাইন পরীক্ষা</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font: Tiro Bangla & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        bengali: {
+                            navy: '#0f172a',
+                            crimson: '#9f1239',
+                            gold: '#b45309',
+                            bg: '#f8fafc'
+                        }
+                    },
+                    fontFamily: {
+                        bangla: ['"Tiro Bangla"', 'serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Tiro Bangla', 'Inter', serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        /* Custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .user-select-none {
+            user-select: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 font-bangla">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-sm border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Info -->
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-emerald-200">
+                    বা
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg text-slate-800 leading-tight">বাংলা ব্যাকরণ ও সমাস পরীক্ষা</h1>
+                    <p class="text-xs text-slate-500 font-sans">পূর্ণমান: ১০০ | সময়: ৬০ মিনিট</p>
+                </div>
+            </div>
+
+            <!-- Timer & Action Widget -->
+            <div id="examTimerWidget" class="hidden flex items-center space-x-4">
+                <div class="bg-amber-50 border border-amber-200 text-amber-800 px-3 py-1.5 rounded-lg flex items-center space-x-2 text-sm font-sans">
+                    <i class="fa-regular fa-clock animate-pulse text-amber-600"></i>
+                    <span class="font-bold font-mono text-base" id="timerDisplay">60:00</span>
+                </div>
+                <button onclick="confirmSubmission()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-4 py-1.5 rounded-lg text-sm transition-all shadow-sm flex items-center space-x-1">
+                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                    <span>জমা দিন</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- STEP 1: Instructions & Start Screen -->
+        <section id="startScreen" class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden my-8">
+            <div class="bg-gradient-to-r from-emerald-700 to-teal-800 text-white p-8">
+                <div class="inline-block px-3 py-1 bg-emerald-500/30 rounded-full text-xs font-sans tracking-wide mb-3">অনলাইন মূল্যায়ন পরীক্ষা</div>
+                <h2 class="text-3xl font-bold mb-2">বাংলা ব্যাকরণ ও সমাস মক টেস্ট</h2>
+                <p class="text-emerald-100 text-sm font-sans">মাধ্যমিক, উচ্চমাধ্যমিক ও যেকোনো চাকরির পরীক্ষার জন্য আদর্শ ১০০ নম্বরের পরীক্ষা।</p>
+            </div>
+
+            <div class="p-8 space-y-6">
+                <!-- Exam Overview Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-sans">
+                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
+                        <div class="text-xs text-emerald-600 font-semibold uppercase">ক বিভাগ (MCQ)</div>
+                        <div class="text-2xl font-bold text-slate-800 my-1">৪০ নম্বর</div>
+                        <div class="text-xs text-slate-500">২০টি প্রশ্ন (প্রতিটি ২ নম্বর)</div>
+                    </div>
+                    <div class="bg-amber-50 p-4 rounded-xl border border-amber-100">
+                        <div class="text-xs text-amber-600 font-semibold uppercase">খ বিভাগ (সংক্ষিপ্ত)</div>
+                        <div class="text-2xl font-bold text-slate-800 my-1">৩০ নম্বর</div>
+                        <div class="text-xs text-slate-500">১০টি প্রশ্ন (ব্যাসবাক্যসহ সমাস)</div>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100">
+                        <div class="text-xs text-indigo-600 font-semibold uppercase">গ বিভাগ (রচনাভিত্তিক)</div>
+                        <div class="text-2xl font-bold text-slate-800 my-1">৩০ নম্বর</div>
+                        <div class="text-xs text-slate-500">২টি অনুচ্ছেদ/বোধ পরীক্ষণ</div>
+                    </div>
+                </div>
+
+                <!-- Instructions -->
+                <div class="space-y-3 border-t border-b border-slate-100 py-5 text-slate-700 leading-relaxed">
+                    <h3 class="font-bold text-slate-900 text-lg">পরীক্ষার নিয়মাবলী:</h3>
+                    <ul class="list-disc list-inside space-y-2 text-sm text-slate-600">
+                        <li>পরীক্ষার জন্য মোট নির্ধারিত সময় <strong>৬০ মিনিট</strong>।</li>
+                        <li>ক বিভাগের সমস্ত বহুনির্বাচনী প্রশ্ন (MCQ) কম্পিউটারে স্বয়ংক্রিয়ভাবে মূল্যায়িত হবে।</li>
+                        <li>খ বিভাগের প্রশ্নের ক্ষেত্রে ব্যাসবাক্য সহ সমাসের নাম সুন্দরভাবে বক্সে লিখুন।</li>
+                        <li>সময় শেষ হয়ে গেলে পরীক্ষা স্বয়ংক্রিয়ভাবে সাবমিট বা জমা হয়ে যাবে।</li>
+                        <li>সাবমিট করার পর সাথে সাথে ফলাফল ও উত্তরপত্র দেখতে পাবেন।</li>
+                    </ul>
+                </div>
+
+                <!-- User Registration Form -->
+                <form id="studentForm" onsubmit="startExam(event)" class="space-y-4 font-sans">
+                    <div>
+                        <label for="studentName" class="block text-sm font-medium text-slate-700 mb-1">পরীক্ষার্থীর নাম *</label>
+                        <input type="text" id="studentName" required placeholder="আপনার নাম লিখুন..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition">
+                    </div>
+                    <div>
+                        <label for="rollNumber" class="block text-sm font-medium text-slate-700 mb-1">রোল নম্বর / আইডেন্টিটি নম্বর (ঐচ্ছিক)</label>
+                        <input type="text" id="rollNumber" placeholder="যেমন: BAN-2026-001" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition">
+                    </div>
+
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-emerald-600/30 transition transform active:scale-95 text-base flex items-center justify-center space-x-2">
+                        <span>পরীক্ষা শুরু করুন</span>
+                        <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- STEP 2: Exam View (Questions & Navigation Layout) -->
+        <div id="examScreen" class="hidden grid grid-cols-1 lg:grid-cols-4 gap-6">
+            
+            <!-- Questions Column (Main Area) -->
+            <div class="lg:col-span-3 space-y-6">
+                
+                <!-- Section Header Tabs -->
+                <div class="bg-white p-2 rounded-xl border border-slate-200 shadow-sm flex flex-wrap gap-2 text-sm font-semibold">
+                    <button id="tab-secA" onclick="switchSection('secA')" class="flex-1 py-2 px-4 rounded-lg bg-emerald-600 text-white transition">
+                        ক বিভাগ (MCQ) [৪০ নম্বর]
+                    </button>
+                    <button id="tab-secB" onclick="switchSection('secB')" class="flex-1 py-2 px-4 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
+                        খ বিভাগ (সমাস নির্ণয়) [৩০ নম্বর]
+                    </button>
+                    <button id="tab-secC" onclick="switchSection('secC')" class="flex-1 py-2 px-4 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
+                        গ বিভাগ (রচনাত্মক) [৩০ নম্বর]
+                    </button>
+                </div>
+
+                <!-- SECTION A: MCQ (Questions 1 to 20) -->
+                <div id="sectionAContainer" class="space-y-6">
+                    <!-- Dynamic rendering via JS -->
+                </div>
+
+                <!-- SECTION B: Short Answer/Identification (Questions 21 to 30) -->
+                <div id="sectionBContainer" class="hidden space-y-6">
+                    <!-- Dynamic rendering via JS -->
+                </div>
+
+                <!-- SECTION C: Essay/Comprehension (Questions 31 to 32) -->
+                <div id="sectionCContainer" class="hidden space-y-6">
+                    <!-- Dynamic rendering via JS -->
+                </div>
+
+                <!-- Navigation Action Buttons -->
+                <div class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <button id="prevBtn" onclick="navigateQuestion(-1)" class="px-5 py-2.5 rounded-lg border border-slate-300 text-slate-700 font-medium hover:bg-slate-50 transition flex items-center space-x-2">
+                        <i class="fa-solid fa-chevron-left text-xs"></i>
+                        <span>পূর্ববর্তী</span>
+                    </button>
+
+                    <span class="text-sm text-slate-500 font-sans" id="sectionIndicator">ক বিভাগ (MCQ)</span>
+
+                    <button id="nextBtn" onclick="navigateQuestion(1)" class="px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium transition flex items-center space-x-2">
+                        <span>পরবর্তী</span>
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Sidebar: Question Status Navigator -->
+            <div class="lg:col-span-1 space-y-6">
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm sticky top-24">
+                    <h3 class="font-bold text-slate-800 mb-3 flex items-center justify-between border-b border-slate-100 pb-2">
+                        <span>প্রশ্ন ট্র্যাকার</span>
+                        <span class="text-xs font-normal text-slate-500 font-sans" id="answeredCounter">0 / 32 উত্তর দেওয়া হয়েছে</span>
+                    </h3>
+
+                    <!-- Status Legend -->
+                    <div class="grid grid-cols-2 gap-2 text-xs font-sans text-slate-600 mb-4">
+                        <div class="flex items-center space-x-1.5">
+                            <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+                            <span>উত্তর প্রদানকৃত</span>
+                        </div>
+                        <div class="flex items-center space-x-1.5">
+                            <span class="w-3 h-3 rounded-full bg-slate-200 border border-slate-300 inline-block"></span>
+                            <span>অসম্পূর্ণ</span>
+                        </div>
+                    </div>
+
+                    <!-- Section A Grid -->
+                    <div class="mb-4">
+                        <div class="text-xs font-bold text-slate-500 uppercase mb-2">ক বিভাগ (১-২০)</div>
+                        <div class="grid grid-cols-5 gap-2 font-sans" id="gridSecA"></div>
+                    </div>
+
+                    <!-- Section B Grid -->
+                    <div class="mb-4">
+                        <div class="text-xs font-bold text-slate-500 uppercase mb-2">খ বিভাগ (২১-৩০)</div>
+                        <div class="grid grid-cols-5 gap-2 font-sans" id="gridSecB"></div>
+                    </div>
+
+                    <!-- Section C Grid -->
+                    <div>
+                        <div class="text-xs font-bold text-slate-500 uppercase mb-2">গ বিভাগ (৩১-৩২)</div>
+                        <div class="grid grid-cols-5 gap-2 font-sans" id="gridSecC"></div>
+                    </div>
+
+                    <div class="mt-6 border-t border-slate-100 pt-4">
+                        <button onclick="confirmSubmission()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 rounded-xl text-sm transition flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <span>পরীক্ষা সমাপ্ত করুন</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- STEP 3: Result & Evaluation Scorecard View -->
+        <section id="resultScreen" class="hidden max-w-4xl mx-auto space-y-6 my-6">
+            <!-- Score Overview Header -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden">
+                <div class="bg-gradient-to-r from-slate-900 to-emerald-950 text-white p-8 text-center relative">
+                    <div class="inline-block px-4 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-xs font-sans tracking-wide mb-3 border border-emerald-500/30">
+                        ফলাফল ও মূল্যায়ন পত্র
+                    </div>
+                    <h2 class="text-3xl font-bold mb-1" id="resStudentName">পরীক্ষার্থীর নাম</h2>
+                    <p class="text-slate-400 text-sm font-sans" id="resRoll">রোল নম্বর: -</p>
+                    
+                    <!-- Main Score Card Badge -->
+                    <div class="mt-6 inline-flex flex-col items-center bg-white/10 backdrop-blur-md px-8 py-4 rounded-2xl border border-white/10">
+                        <span class="text-xs text-slate-300 font-sans uppercase">ক বিভাগ স্বয়ংক্রিয় নম্বর (MCQ)</span>
+                        <div class="text-4xl font-extrabold text-emerald-400 font-sans my-1" id="resScoreMCQ">0 / 40</div>
+                        <span class="text-xs text-emerald-200 font-sans" id="resPercentage">শতকরা হার: 0%</span>
+                    </div>
+                </div>
+
+                <!-- Detailed Marks Breakdown Table -->
+                <div class="p-6 bg-slate-50 border-b border-slate-200 grid grid-cols-1 sm:grid-cols-3 gap-4 font-sans text-center">
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="text-xs text-slate-500 font-medium">ক বিভাগ (MCQ)</div>
+                        <div class="text-xl font-bold text-emerald-600 mt-1" id="secAScoreText">0 / 40</div>
+                        <div class="text-[11px] text-slate-400 mt-0.5">অটো-মূল্যায়িত</div>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="text-xs text-slate-500 font-medium">খ বিভাগ (সমাস নির্ণয়)</div>
+                        <div class="text-xl font-bold text-amber-600 mt-1">৩০ নম্বর</div>
+                        <div class="text-[11px] text-slate-400 mt-0.5">শিক্ষক মূল্যায়নের জন্য জমাকৃত</div>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="text-xs text-slate-500 font-medium">গ বিভাগ (রচনাত্মক)</div>
+                        <div class="text-xl font-bold text-indigo-600 mt-1">৩০ নম্বর</div>
+                        <div class="text-[11px] text-slate-400 mt-0.5">শিক্ষক মূল্যায়নের জন্য জমাকৃত</div>
+                    </div>
+                </div>
+
+                <div class="p-6 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center space-x-2 text-sm text-slate-600">
+                        <i class="fa-solid fa-clock text-slate-400"></i>
+                        <span>ব্যবহৃত সময়: <strong id="resTimeTaken" class="font-sans text-slate-800">00:00</strong></span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="printResult()" class="px-4 py-2 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-medium text-sm transition flex items-center space-x-1.5">
+                            <i class="fa-solid fa-print"></i>
+                            <span>প্রিন্ট/পিডিএফ</span>
+                        </button>
+                        <button onclick="restartExam()" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm transition flex items-center space-x-1.5">
+                            <i class="fa-solid fa-rotate-right"></i>
+                            <span>পুনরায় পরীক্ষা দিন</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Answer Key & Explanations -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-lg p-6 space-y-6">
+                <h3 class="text-xl font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center justify-between">
+                    <span>উত্তরপত্র ও ব্যাখ্যা বিশ্লেষণ</span>
+                    <span class="text-xs text-slate-500 font-sans font-normal">ক বিভাগের বিশদ বিশ্লেষণ</span>
+                </h3>
+
+                <div id="answerReviewList" class="space-y-6">
+                    <!-- Dynamic Answer Review Generated via JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Custom Modal for Confirmation -->
+    <div id="confirmModal" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 text-center space-y-4">
+            <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto text-xl">
+                <i class="fa-solid fa-circle-exclamation"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900">আপনি কি উত্তরপত্র জমা দিতে চান?</h3>
+            <p class="text-sm text-slate-600">জমাদান শেষ হলে আপনি পুনরায় উত্তর পরিবর্তন করতে পারবেন না।</p>
+            <div class="flex items-center justify-center space-x-3 pt-2 font-sans">
+                <button onclick="closeModal()" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-50 font-medium text-sm">বাতিল করুন</button>
+                <button onclick="processSubmission()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm shadow-md shadow-emerald-600/30">হ্যাঁ, জমা দিন</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Data and Logic -->
+    <script>
+        // QUESTION BANK DATA STRUCTURE
+        const examData = {
+            sectionA: [
+                {
+                    id: 1,
+                    question: "'পীতাম্বর' পদটির সঠিক ব্যাসবাক্য ও সমাস কোনটি?",
+                    options: ["পীত অম্বর যার - বহুব্রীহি সমাস", "পীত যে অম্বর - কর্মধারয় সমাস", "পীচ ও অম্বর - দ্বন্দ্ব সমাস", "পীচকে অম্বর - তৎপুরুষ সমাস"],
+                    correct: 0,
+                    explanation: "'পীত অম্বর যার' = পীতাম্বর (শ্রীকৃষ্ণকে বোঝায়, অন্য পদ প্রধান হওয়ায় এটি বহুব্রীহি সমাস)।"
+                },
+                {
+                    id: 2,
+                    question: "'রাজহাঁস' পদটির সঠিক ব্যাসবাক্য কোনটি?",
+                    options: ["রাজা ও হাঁস", "হাঁসের রাজা", "রাজার হাঁস", "যে রাজা সে-ই হাঁস"],
+                    correct: 1,
+                    explanation: "'রাজহাঁস' শব্দের ব্যাসবাক্য হলো 'হাঁসের রাজা' (পরপদ প্রধান তৎপুরুষ সমাস/অলুক সমাসের ব্যতিক্রমী উদাহরণ)।"
+                },
+                {
+                    id: 3,
+                    question: "যে সমাসে সমস্যমান পদগুলির কোনোটির অর্থ না বুঝিয়ে অন্য কোনো তৃতীয় অর্থ প্রকাশ করে, তাকে কী সমাস বলে?",
+                    options: ["দ্বন্দ্ব সমাস", "বহুব্রীহি সমাস", "অব্যয়ীভাব সমাস", "তৎপুরুষ সমাস"],
+                    correct: 1,
+                    explanation: "বহুব্রীহি সমাসে সমস্যমান পদের অর্থ প্রধান না হয়ে অন্য একটি স্বতন্ত্র অর্থ প্রকাশ পায়।"
+                },
+                {
+                    id: 4,
+                    question: "'উপকূল' শব্দটির ব্যাসবাক্য হলো—",
+                    options: ["কূলের সমীপ", "কূলের অভাব", "কূলকে অতিক্রম", "কূলে কূলে"],
+                    correct: 0,
+                    explanation: "'উপকূল' = কূলের সমীপ বা নিকট (এটি অব্যয়ীভাব সমাস)।"
+                },
+                {
+                    id: 5,
+                    question: "'সিংহদ্বার' শব্দটিতে কোন সমাস ঘটেছে?",
+                    options: ["উপমিত কর্মধারয়", "মধ্যপদলোপী কর্মধারয়", "রূপক কর্মধারয়", "সাধারণ কর্মধারয়"],
+                    correct: 1,
+                    explanation: "'সিংহ চিহ্নিত দ্বার' = সিংহদ্বার। এখানে চিহ্নিত মধ্যপদটি লোপ পেয়েছে বলে এটি মধ্যপদলোপী কর্মধারয়।"
+                },
+                {
+                    id: 6,
+                    question: "'উপমান' ও 'উপমেয়'-এর মধ্যে অভেদ কল্পনা করা হয় কোন সমাসে?",
+                    options: ["উপমিত কর্মধারয়", "রূপক কর্মধারয়", "দ্বিগু সমাস", "নঞ তৎপুরুষ"],
+                    correct: 1,
+                    explanation: "রূপক কর্মধারয় সমাসে উপমান ও উপমেয়ের মধ্যে অভেদ কল্পনা করা হয় (যেমন: মন রূপ পাখি = মনপাখি)।"
+                },
+                {
+                    id: 7,
+                    question: "'পঙ্কজ' (পঙ্কে জন্মে যা) এটি কোন সমাসের উদাহরণ?",
+                    options: ["উপপদ তৎপুরুষ সমাস", "প্রাদি সমাস", "নিত্য সমাস", "অলুক সমাস"],
+                    correct: 0,
+                    explanation: "কৃদন্ত পদের সাথে উপপদের যে সমাস হয় তাকে উপপদ তৎপুরুষ সমাস বলে।"
+                },
+                {
+                    id: 8,
+                    question: "যে সমাসে সমস্যমান পদের বিভক্তি লোপ পায় না, তাকে কী বলে?",
+                    options: ["নিত্য সমাস", "অলুক সমাস", "দ্বিগু সমাস", "একশেষ সমাস"],
+                    correct: 1,
+                    explanation: "বিভক্তি লোপ না পেলে তাকে 'অলুক সমাস' বলে (যেমন: মুখে ভাত = মুখেভাত)।"
+                },
+                {
+                    id: 9,
+                    question: "'আমরা' (আমি, তুমি ও সে) - এটি কোন সমাসের উদাহরণ?",
+                    options: ["বহুব্রীহি সমাস", "একশেষ দ্বন্দ্ব সমাস", "উপমান কর্মধারয়", "অব্যয়ীভাব সমাস"],
+                    correct: 1,
+                    explanation: "একধিক সর্বনাম পদ মিলে একটি পদে রূপান্তরিত হলে তাকে একশেষ দ্বন্দ্ব সমাস বলা হয়।"
+                },
+                {
+                    id: 10,
+                    question: "'ত্রিনয়ন' (ত্রি নয়নের সমাহার) - এটি কোন সমাস?",
+                    options: ["বহুব্রীহি সমাস", "দ্বিগু সমাস", "কর্মধারয় সমাস", "তৎপুরুষ সমাস"],
+                    correct: 1,
+                    explanation: "পূর্বপদ সংখ্যাবাচক এবং পরপদ সমাহার অর্থ প্রকাশ করলে তা দ্বিগু সমাস হয়।"
+                },
+                {
+                    id: 11,
+                    question: "'মনমাঝি' পদটির ব্যাসবাক্য ও সমাস হলো—",
+                    options: ["মন রূপ মাঝি - রূপক কর্মধারয়", "মন ও মাঝি - দ্বন্দ্ব সমাস", "মনের মাঝি - ষষ্ঠী তৎপুরুষ", "মন যে মাঝি - উপমিত কর্মধারয়"],
+                    correct: 0,
+                    explanation: "'মন রূপ মাঝি' = মনমাঝি (রূপক কর্মধারয় সমাস)।"
+                },
+                {
+                    id: 12,
+                    question: "'অনুতাপ' শব্দটিতে 'অনু' উপসর্গটি কী অর্থে ব্যবহৃত হয়েছে?",
+                    options: ["সদৃশ অর্থে", "পশ্চাৎ অর্থে", "অভাব অর্থে", "সমীপ অর্থে"],
+                    correct: 1,
+                    explanation: "তাপের পশ্চাৎ = অনুতাপ। এখানে 'অনু' উপসর্গটি পশ্চাৎ বা পরে অর্থে ব্যবহৃত।"
+                },
+                {
+                    id: 13,
+                    question: "নিত্য সমাসের বৈশিষ্ট্য কী?",
+                    options: ["ব্যাসবাক্য হয় না বা ব্যাসবাক্য করতে হলে অন্য পদের প্রয়োজন হয়", "পূর্বপদ প্রধান হয়", "বিভক্তি লোপ পায়", "দ্বিগু পদের অন্তর্ভুক্ত"],
+                    correct: 0,
+                    explanation: "নিত্য সমাসে সমস্ত পদের সমস্যমান পদ থাকে না বা পৃথক ব্যাসবাক্য হয় না (যেমন: অন্য গ্রাম = গ্রামান্তর)।"
+                },
+                {
+                    id: 14,
+                    question: "'কুশীলব' পদটির সঠিক ব্যাসবাক্য হলো—",
+                    options: ["কুশ ও লব", "কুশের লব", "কুশযুক্ত লব", "যে কুশ সে-ই লব"],
+                    correct: 0,
+                    explanation: "রামায়ণের চরিত্র কুশ ও লব পদদ্বয়ের দ্বন্দ্ব সমাসে তৈরি হয়েছে 'কুশীলব'।"
+                },
+                {
+                    id: 15,
+                    question: "'হাতেখড়ি' (হাতে খড়ি দেওয়া হয় যে অনুষ্ঠানে) - এটি কোন সমাস?",
+                    options: ["মধ্যপদলোপী বহুব্রীহি", "অলুক দ্বন্দ্ব", "উপপদ তৎপুরুষ", "দ্বিগু সমাস"],
+                    correct: 0,
+                    explanation: "অনুষ্ঠান বা ক্রিয়ার মাধ্যমে অন্য অর্থ প্রকাশিত হওয়ায় এটি মধ্যপদলোপী বহুব্রীহি।"
+                },
+                {
+                    id: 16,
+                    question: "'বিনা মেঘে বজ্রপাত' — রেখাঙ্কিত পদটি ('বিনা মেঘে') কোন কারক?",
+                    options: ["অপাাদান কারক", "করণ কারক", "অধিকরণ কারক", "কর্ম কারক"],
+                    correct: 0,
+                    explanation: "যে বস্তু বা স্থান থেকে কিছু গৃহিত, চ্যুত বা উৎপন্ন হয় তা অপাদান কারক।"
+                },
+                {
+                    id: 17,
+                    question: "গঠন অনুযায়ী বাক্যকে কয়টি ভাগে ভাগ করা যায়?",
+                    options: ["২টি", "৩টি", "৪টি", "৫টি"],
+                    correct: 1,
+                    explanation: "গঠনগতভাবে বাক্য ৩ প্রকার: সরল বাক্য, জটিল বাক্য এবং যৌগিক বাক্য।"
+                },
+                {
+                    id: 18,
+                    question: "'বইটি পড়া হচ্ছে' — এটি কোন বাচ্যের উদাহরণ?",
+                    options: ["কর্তৃবাচ্য", "কর্মবাচ্য", "ভাববাচ্য", "কর্মকর্তৃবাচ্য"],
+                    correct: 1,
+                    explanation: "ক্রিয়ার প্রাধান্য বা কর্মের প্রাধান্য থাকলে তা কর্মবাচ্য হয়।"
+                },
+                {
+                    id: 19,
+                    question: "'দম্পতি' শব্দটির সঠিক সমাসবদ্ধ রূপের ব্যাসবাক্য কোনটি?",
+                    options: ["দম ও পতি", "জায়া ও পতি", "দল ও পতি", "দুই পতি"],
+                    correct: 1,
+                    explanation: "'জায়া ও পতি' = দম্পতি (দ্বন্দ্ব সমাস)।"
+                },
+                {
+                    id: 20,
+                    question: "'যথাসাধ্য' পদটি কোন সমাসের উদাহরণ?",
+                    options: ["তৎপুরুষ সমাস", "অব্যয়ীভাব সমাস", "বহুব্রীহি সমাস", "কর্মধারয় সমাস"],
+                    correct: 1,
+                    explanation: "'সাধ্যকে অতিক্রম না করে' = যথাসাধ্য। এটি অব্যয়ীভাব সমাসের উদাহরণ।"
+                }
+            ],
+            sectionB: [
+                { id: 21, term: "বিনা-মেঘে-বজ্রপাত", mark: 3, prompt: "ব্যাসবাক্য সহ সমাসের নাম লিখুন:" },
+                { id: 22, term: "মুখচন্দ্র", mark: 3, prompt: "ব্যাসবাক্য সহ সমাসের নাম লিখুন:" },
+                { id: 23, term: "প্রতিদিন", mark: 3, prompt: "ব্যাসবাক্য সহ সমাসের নাম লিখুন:" },
+                { id: 24, term: "নীলাম্বর", mark: 3, prompt: "ব্যাসবাক্য সহ সমাসের নাম লিখুন:" },
+                { id: 25, term: "চরোখা", mark: 3, prompt: "ব্যাসবাক্য সহ সমাসের নাম লিখুন:" },
+                { id: 26, term: "মায়াতরু", mark: 3, prompt: "ব্যাসবাক্য সহ সমাসের নাম লিখুন:" },
+                { id: 27, term: "তেমাথা", mark: 3, prompt: "ব্যাসবাক্য সহ সমাসের নাম লিখুন:" },
+                { id: 28, term: "দেশান্তর", mark: 3, prompt: "ব্যাসবাক্য সহ সমাসের নাম লিখুন:" },
+                { id: 29, term: "রাজর্ষি", mark: 3, prompt: "ব্যাসবাক্য সহ সমাসের নাম লিখুন:" },
+                { id: 30, term: "গৃহস্থ", mark: 3, prompt: "ব্যাসবাক্য সহ সমাসের নাম লিখুন:" }
+            ],
+            sectionC: [
+                {
+                    id: 31,
+                    title: "১. ব্যাকরণগত ব্যাখ্যার রচনা (১৫ নম্বর)",
+                    prompt: "বাংলা ভাষার গঠনে 'সমাস' এবং 'সন্ধি'-র ভূমিকা এবং উভয়ের পার্থক্য উদাহরণসহ বিশদভাবে আলোচনা করুন। (কমপক্ষে ২০০-২৫০ শব্দ)"
+                },
+                {
+                    id: 32,
+                    title: "২. বোধ পরীক্ষণ ও প্রয়োগ (১৫ নম্বর)",
+                    prompt: "নিচের অনুচ্ছেদটি মনোযোগ দিয়ে পড়ুন এবং অনুচ্ছেদ থেকে ৩টি সমাসবদ্ধ পদ খুঁজে নিয়ে ব্যাসবাক্য সহ সমাস নির্ণয় করুন এবং বাক্য পরিবর্তন করুন:\n\n'শরতের মেঘমুক্ত নীলআকাশে সোনালী রোদের ঝিলিক দেখা যাচ্ছে। নদীকূলে কাশফুলের শুভ্র সমারোহ এবং রাজহাঁসের অবাধ সাঁতার মানবমনে অপার আনন্দ সঞ্চার করে।'",
+                }
+            ]
+        };
+
+        // APP STATE VARIABLES
+        let studentDetails = { name: '', roll: '' };
+        let userAnswers = {
+            secA: {}, // questionId: optionIndex
+            secB: {}, // questionId: text
+            secC: {}  // questionId: text
+        };
+        let currentSection = 'secA';
+        let totalTimeSeconds = 60 * 60; // 60 minutes
+        let timerInterval = null;
+        let timeTakenSeconds = 0;
+
+        // INITIALIZATION & EVENT HANDLERS
+        function startExam(e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('studentName').value.trim();
+            const rollInput = document.getElementById('rollNumber').value.trim();
+
+            if (!nameInput) return;
+
+            studentDetails.name = nameInput;
+            studentDetails.roll = rollInput || 'N/A';
+
+            // DOM Toggle
+            document.getElementById('startScreen').classList.add('hidden');
+            document.getElementById('examScreen').classList.remove('hidden');
+            document.getElementById('examTimerWidget').classList.remove('hidden');
+
+            // Render Questions
+            renderSectionA();
+            renderSectionB();
+            renderSectionC();
+            renderTrackers();
+
+            // Start Timer
+            startTimer();
+        }
+
+        // TIMER SYSTEM
+        function startTimer() {
+            const display = document.getElementById('timerDisplay');
+            timerInterval = setInterval(() => {
+                totalTimeSeconds--;
+                timeTakenSeconds++;
+
+                const mins = Math.floor(totalTimeSeconds / 60);
+                const secs = totalTimeSeconds % 60;
+
+                display.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+                if (totalTimeSeconds <= 300) { // Warning last 5 mins
+                    display.parentElement.classList.remove('bg-amber-50', 'text-amber-800');
+                    display.parentElement.classList.add('bg-red-50', 'text-red-600', 'animate-pulse');
+                }
+
+                if (totalTimeSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    alert("সময় শেষ হয়ে গেছে! পরীক্ষা স্বয়ংক্রিয়ভাবে জমা নেওয়া হচ্ছে।");
+                    processSubmission();
+                }
+            }, 1000);
+        }
+
+        // RENDER FUNCTIONS FOR QUESTIONS
+        function renderSectionA() {
+            const container = document.getElementById('sectionAContainer');
+            container.innerHTML = examData.sectionA.map((q, idx) => `
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4" id="q-card-${q.id}">
+                    <div class="flex items-start justify-between">
+                        <span class="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 rounded-lg text-xs font-bold font-sans">প্রশ্ন ${idx + 1} / ২০ [২ নম্বর]</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800 leading-snug">${q.question}</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 font-sans">
+                        ${q.options.map((opt, optIdx) => `
+                            <label onclick="selectMCQ(${q.id}, ${optIdx})" class="flex items-center space-x-3 p-3.5 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/50 cursor-pointer transition user-select-none border-option-${q.id}-${optIdx}">
+                                <input type="radio" name="mcq-${q.id}" value="${optIdx}" ${userAnswers.secA[q.id] === optIdx ? 'checked' : ''} class="w-4 h-4 text-emerald-600 focus:ring-emerald-500 border-slate-300">
+                                <span class="text-sm text-slate-700 font-bangla">${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderSectionB() {
+            const container = document.getElementById('sectionBContainer');
+            container.innerHTML = examData.sectionB.map((q, idx) => `
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3" id="q-card-${q.id}">
+                    <div class="flex items-center justify-between">
+                        <span class="inline-block px-3 py-1 bg-amber-100 text-amber-800 rounded-lg text-xs font-bold font-sans">প্রশ্ন ${idx + 21} / ৩২ [৩ নম্বর]</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800">${q.prompt} <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">${q.term}</span></h4>
+                    <div>
+                        <textarea oninput="handleTextInput('secB', ${q.id}, this.value)" placeholder="ব্যাসবাক্য এবং সমাসের নাম বিস্তারিত লিখুন..." class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none text-sm leading-relaxed font-sans">${userAnswers.secB[q.id] || ''}</textarea>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderSectionC() {
+            const container = document.getElementById('sectionCContainer');
+            container.innerHTML = examData.sectionC.map((q, idx) => `
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4" id="q-card-${q.id}">
+                    <div class="flex items-center justify-between">
+                        <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-lg text-xs font-bold font-sans">প্রশ্ন ${idx + 31} [১৫ নম্বর]</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800 whitespace-pre-line leading-relaxed">${q.title}</h4>
+                    <p class="text-sm text-slate-600 bg-slate-50 p-4 rounded-xl border border-slate-200 whitespace-pre-line">${q.prompt}</p>
+                    <div>
+                        <textarea oninput="handleTextInput('secC', ${q.id}, this.value)" rows="6" placeholder="আপনার উত্তর বিশদভাবে এখানে লিখুন..." class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-sm leading-relaxed font-sans">${userAnswers.secC[q.id] || ''}</textarea>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // NAVIGATION & STATUS TRACKER
+        function renderTrackers() {
+            const gridSecA = document.getElementById('gridSecA');
+            const gridSecB = document.getElementById('gridSecB');
+            const gridSecC = document.getElementById('gridSecC');
+
+            gridSecA.innerHTML = examData.sectionA.map((q, idx) => `
+                <button onclick="scrollToQuestion(${q.id}, 'secA')" id="btn-track-${q.id}" class="w-8 h-8 rounded-lg text-xs font-medium flex items-center justify-center transition border ${userAnswers.secA[q.id] !== undefined ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'}">
+                    ${idx + 1}
+                </button>
+            `).join('');
+
+            gridSecB.innerHTML = examData.sectionB.map((q, idx) => `
+                <button onclick="scrollToQuestion(${q.id}, 'secB')" id="btn-track-${q.id}" class="w-8 h-8 rounded-lg text-xs font-medium flex items-center justify-center transition border ${userAnswers.secB[q.id] ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'}">
+                    ${idx + 21}
+                </button>
+            `).join('');
+
+            gridSecC.innerHTML = examData.sectionC.map((q, idx) => `
+                <button onclick="scrollToQuestion(${q.id}, 'secC')" id="btn-track-${q.id}" class="w-8 h-8 rounded-lg text-xs font-medium flex items-center justify-center transition border ${userAnswers.secC[q.id] ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'}">
+                    ${idx + 31}
+                </button>
+            `).join('');
+
+            updateAnswerCounter();
+        }
+
+        function updateAnswerCounter() {
+            const countA = Object.keys(userAnswers.secA).length;
+            const countB = Object.keys(userAnswers.secB).filter(k => userAnswers.secB[k].trim() !== '').length;
+            const countC = Object.keys(userAnswers.secC).filter(k => userAnswers.secC[k].trim() !== '').length;
+            
+            const totalAnswered = countA + countB + countC;
+            document.getElementById('answeredCounter').textContent = `${totalAnswered} / 32 উত্তর দেওয়া হয়েছে`;
+        }
+
+        function selectMCQ(questionId, optionIndex) {
+            userAnswers.secA[questionId] = optionIndex;
+            const btn = document.getElementById(`btn-track-${questionId}`);
+            if (btn) {
+                btn.className = 'w-8 h-8 rounded-lg text-xs font-medium flex items-center justify-center transition border bg-emerald-600 text-white border-emerald-600';
+            }
+            updateAnswerCounter();
+        }
+
+        function handleTextInput(section, questionId, text) {
+            userAnswers[section][questionId] = text;
+            const btn = document.getElementById(`btn-track-${questionId}`);
+            if (btn) {
+                if (text.trim() !== '') {
+                    btn.className = 'w-8 h-8 rounded-lg text-xs font-medium flex items-center justify-center transition border bg-emerald-600 text-white border-emerald-600';
+                } else {
+                    btn.className = 'w-8 h-8 rounded-lg text-xs font-medium flex items-center justify-center transition border bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200';
+                }
+            }
+            updateAnswerCounter();
+        }
+
+        function switchSection(sec) {
+            currentSection = sec;
+            
+            // Containers
+            document.getElementById('sectionAContainer').classList.toggle('hidden', sec !== 'secA');
+            document.getElementById('sectionBContainer').classList.toggle('hidden', sec !== 'secB');
+            document.getElementById('sectionCContainer').classList.toggle('hidden', sec !== 'secC');
+
+            // Tab styling
+            const tabs = ['secA', 'secB', 'secC'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                if (t === sec) {
+                    btn.className = 'flex-1 py-2 px-4 rounded-lg bg-emerald-600 text-white transition';
+                } else {
+                    btn.className = 'flex-1 py-2 px-4 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition';
+                }
+            });
+
+            // Section Label Indicator
+            const labels = {
+                secA: 'ক বিভাগ (MCQ)',
+                secB: 'খ বিভাগ (সমাস নির্ণয়)',
+                secC: 'গ বিভাগ (রচনাত্মক)'
+            };
+            document.getElementById('sectionIndicator').textContent = labels[sec];
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function navigateQuestion(direction) {
+            const order = ['secA', 'secB', 'secC'];
+            const currentIndex = order.indexOf(currentSection);
+            const nextIndex = currentIndex + direction;
+
+            if (nextIndex >= 0 && nextIndex < order.length) {
+                switchSection(order[nextIndex]);
+            }
+        }
+
+        function scrollToQuestion(qId, sec) {
+            if (currentSection !== sec) {
+                switchSection(sec);
+            }
+            setTimeout(() => {
+                const el = document.getElementById(`q-card-${qId}`);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 100);
+        }
+
+        // SUBMISSION & REVIEW SYSTEM
+        function confirmSubmission() {
+            document.getElementById('confirmModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('confirmModal').classList.add('hidden');
+        }
+
+        function processSubmission() {
+            closeModal();
+            clearInterval(timerInterval);
+
+            // Hide Exam Screen & Header Timer
+            document.getElementById('examScreen').classList.add('hidden');
+            document.getElementById('examTimerWidget').classList.add('hidden');
+            document.getElementById('resultScreen').classList.remove('hidden');
+
+            // Calculate Section A Score
+            let mcqScore = 0;
+            examData.sectionA.forEach(q => {
+                if (userAnswers.secA[q.id] === q.correct) {
+                    mcqScore += 2;
+                }
+            });
+
+            // Populate Student Meta
+            document.getElementById('resStudentName').textContent = studentDetails.name;
+            document.getElementById('resRoll').textContent = `রোল নম্বর: ${studentDetails.roll}`;
+            document.getElementById('resScoreMCQ').textContent = `${mcqScore} / 40`;
+            document.getElementById('secAScoreText').textContent = `${mcqScore} / 40`;
+
+            const percentage = Math.round((mcqScore / 40) * 100);
+            document.getElementById('resPercentage').textContent = `ক বিভাগে অর্জিত সাফল্য: ${percentage}%`;
+
+            // Format Time Taken
+            const minsSpent = Math.floor(timeTakenSeconds / 60);
+            const secsSpent = timeTakenSeconds % 60;
+            document.getElementById('resTimeTaken').textContent = `${minsSpent} মিনিট ${secsSpent} সেকেন্ড`;
+
+            // Render Answer Key Review
+            renderAnswerReview();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderAnswerReview() {
+            const reviewContainer = document.getElementById('answerReviewList');
+            reviewContainer.innerHTML = examData.sectionA.map((q, idx) => {
+                const userChoice = userAnswers.secA[q.id];
+                const isCorrect = userChoice === q.correct;
+                const isSkipped = userChoice === undefined;
+
+                return `
+                    <div class="p-5 rounded-2xl border ${isCorrect ? 'bg-emerald-50/50 border-emerald-200' : (isSkipped ? 'bg-slate-50 border-slate-200' : 'bg-rose-50/50 border-rose-200')} space-y-3">
+                        <div class="flex items-start justify-between">
+                            <span class="text-xs font-bold font-sans px-2.5 py-1 rounded-md ${isCorrect ? 'bg-emerald-600 text-white' : (isSkipped ? 'bg-slate-400 text-white' : 'bg-rose-600 text-white')}">
+                                ${isCorrect ? 'সঠিক (+২)' : (isSkipped ? 'উত্তর দেওয়া হয়নি (০)' : 'ভুল (০)')}
+                            </span>
+                            <span class="text-xs text-slate-400 font-sans">প্রশ্ন ${idx + 1}</span>
+                        </div>
+                        <h4 class="font-bold text-slate-800">${q.question}</h4>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm font-sans">
+                            ${q.options.map((opt, optIdx) => {
+                                let badgeStyle = "bg-white text-slate-700 border-slate-200";
+                                if (optIdx === q.correct) {
+                                    badgeStyle = "bg-emerald-100 border-emerald-400 text-emerald-900 font-bold";
+                                } else if (optIdx === userChoice && !isCorrect) {
+                                    badgeStyle = "bg-rose-100 border-rose-400 text-rose-900 line-through";
+                                }
+                                return `
+                                    <div class="p-2.5 rounded-lg border text-xs font-bangla flex items-center justify-between ${badgeStyle}">
+                                        <span>${opt}</span>
+                                        ${optIdx === q.correct ? '<i class="fa-solid fa-check text-emerald-600 text-sm"></i>' : ''}
+                                        ${optIdx === userChoice && !isCorrect ? '<i class="fa-solid fa-xmark text-rose-600 text-sm"></i>' : ''}
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+
+                        <div class="bg-white/80 p-3 rounded-xl border border-slate-200/80 text-xs text-slate-600 leading-relaxed font-sans">
+                            <strong class="text-slate-800 font-bangla">ব্যাখ্যা:</strong> ${q.explanation}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function printResult() {
+            window.print();
+        }
+
+        function restartExam() {
+            if (confirm("আপনি কি নতুন করে পরীক্ষা শুরু করতে চান? বর্তমান রেকর্ড মুছে যাবে।")) {
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
